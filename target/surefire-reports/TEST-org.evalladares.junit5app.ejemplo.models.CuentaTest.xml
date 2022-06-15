@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="org.evalladares.junit5app.ejemplo.models.CuentaTest" time="5.075" tests="3" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="sun.desktop" value="windows"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\evall\OneDrive\Documents\Proyectos\test-java-udemy\target\test-classes;C:\Users\evall\OneDrive\Documents\Proyectos\test-java-udemy\target\classes;C:\Users\evall\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.0-M1\junit-jupiter-5.9.0-M1.jar;C:\Users\evall\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.0-M1\junit-jupiter-api-5.9.0-M1.jar;C:\Users\evall\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\evall\.m2\repository\org\junit\platform\junit-platform-commons\1.9.0-M1\junit-platform-commons-1.9.0-M1.jar;C:\Users\evall\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\evall\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.0-M1\junit-jupiter-params-5.9.0-M1.jar;C:\Users\evall\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.0-M1\junit-jupiter-engine-5.9.0-M1.jar;C:\Users\evall\.m2\repository\org\junit\platform\junit-platform-engine\1.9.0-M1\junit-platform-engine-1.9.0-M1.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://openjdk.java.net/"/>
+    <property name="user.timezone" value="America/Bogota"/>
+    <property name="java.vm.specification.version" value="11"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="PE"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-11.0.12\bin"/>
+    <property name="sun.java.command" value="C:\Users\evall\AppData\Local\Temp\surefire9411828462987886409\surefirebooter4289595453121425822.jar C:\Users\evall\AppData\Local\Temp\surefire9411828462987886409 2022-06-15T16-25-37_796-jvmRun1 surefire7373060979825233726tmp surefire_06228152984697859459tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\evall\OneDrive\Documents\Proyectos\test-java-udemy\target\test-classes;C:\Users\evall\OneDrive\Documents\Proyectos\test-java-udemy\target\classes;C:\Users\evall\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.0-M1\junit-jupiter-5.9.0-M1.jar;C:\Users\evall\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.0-M1\junit-jupiter-api-5.9.0-M1.jar;C:\Users\evall\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\evall\.m2\repository\org\junit\platform\junit-platform-commons\1.9.0-M1\junit-platform-commons-1.9.0-M1.jar;C:\Users\evall\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\evall\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.0-M1\junit-jupiter-params-5.9.0-M1.jar;C:\Users\evall\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.0-M1\junit-jupiter-engine-5.9.0-M1.jar;C:\Users\evall\.m2\repository\org\junit\platform\junit-platform-engine\1.9.0-M1\junit-platform-engine-1.9.0-M1.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\evall"/>
+    <property name="user.language" value="es"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2021-07-20"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-11.0.12"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\evall\OneDrive\Documents\Proyectos\test-java-udemy"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="C:\Users\evall\AppData\Local\Temp\surefire9411828462987886409\surefirebooter4289595453121425822.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="11.0.12+8-LTS-237"/>
+    <property name="user.name" value="evall"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="18.9"/>
+    <property name="localRepository" value="C:\Users\evall\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\evall\AppData\Local\Temp\"/>
+    <property name="idea.version" value="2021.3.3"/>
+    <property name="java.version" value="11.0.12"/>
+    <property name="user.dir" value="C:\Users\evall\OneDrive\Documents\Proyectos\test-java-udemy"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-11.0.12\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\Program Files\MongoDB\Server\5.0\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\composer;C:\Program Files\php-8.1.3;C:\Users\evall\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA 2021.3.1\bin;;C:\Users\evall\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\JetBrains\PhpStorm 2021.3.2\bin;;C:\Users\evall\AppData\Roaming\Composer\vendor\bin;;."/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vm.version" value="11.0.12+8-LTS-237"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="55.0"/>
+  </properties>
+  <testcase name="pruebaTimeout2" classname="org.evalladares.junit5app.ejemplo.models.CuentaTest$EjemploTimeoutTest" time="0.948"/>
+  <testcase name="testTimeoutAssertions" classname="org.evalladares.junit5app.ejemplo.models.CuentaTest$EjemploTimeoutTest" time="4.004"/>
+  <testcase name="pruebaTimeout" classname="org.evalladares.junit5app.ejemplo.models.CuentaTest$EjemploTimeoutTest" time="0.11"/>
+</testsuite>

@@ -10,7 +10,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.math.BigDecimal;
+import java.time.Duration;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.*;
@@ -21,8 +23,9 @@ class CuentaTest {
   Cuenta cuenta1;
 
   @BeforeEach
-  void initMethodTest() {
+  void initMethodTest(TestInfo testInfo, TestReporter testReporter) {
     System.out.println("Iniciando el método");
+    testReporter.publishEntry("Ejecutando " + testInfo.getDisplayName() + " " + testInfo.getTestMethod().orElse(null).getName() + " con las etiquetas" + testInfo.getTags());
     this.cuenta = new Cuenta("Edward", new BigDecimal("10005.23434"));
     this.cuenta1 = new Cuenta("Joseph", new BigDecimal("2000.23434"));
   }
@@ -43,6 +46,7 @@ class CuentaTest {
   }
 
   @Test
+  @Tag("cuenta")
   //@Disabled
   @DisplayName("Probando el nombre la cuenta corriente!")
   void testNombreCuenta() {
@@ -56,60 +60,72 @@ class CuentaTest {
   }
 
   @Test
+  @Tag("cuenta")
   void testSaldoCuenta() {
     assertEquals(10005.23434, cuenta.getSaldo().doubleValue());
     assertFalse(cuenta.getSaldo().compareTo(BigDecimal.ZERO) < 0);
   }
 
   @Test
+  @Tag("cuenta")
   void testReferenciaCuenta() {
     assertNotEquals(cuenta, cuenta1);
   }
 
-  @Test
-  void testDebitoCuenta() {
-    cuenta.debito(new BigDecimal("100"));
+  @Nested
+  class CuentaOperacionTest {
+    @Test
+    @Tag("cuenta")
+    void testDebitoCuenta() {
+      cuenta.debito(new BigDecimal("100"));
 
-    assertNotNull(cuenta.getSaldo());
-    assertEquals(9905, cuenta.getSaldo().intValue());
+      assertNotNull(cuenta.getSaldo());
+      assertEquals(9905, cuenta.getSaldo().intValue());
 
-    assertEquals("9905.23434", cuenta.getSaldo().toPlainString());
+      assertEquals("9905.23434", cuenta.getSaldo().toPlainString());
+    }
+
+    @Test
+    @Tag("cuenta")
+    void testCreditoCuenta() {
+      cuenta.credito(new BigDecimal("100"));
+
+      assertNotNull(cuenta.getSaldo());
+      assertEquals(10105, cuenta.getSaldo().intValue());
+
+      assertEquals("10105.23434", cuenta.getSaldo().toPlainString());
+    }
+
+    @Test
+    @Tag("cuenta")
+    @Tag("error")
+    void testDineroInsuficienteExceptionCuenta() {
+      Exception exception = assertThrows(DineroInsuficienteException.class, () -> {
+        cuenta.debito(new BigDecimal(15000));
+      });
+
+      String actual = exception.getMessage();
+      String esperado = "Dinero Insuficiente";
+
+      assertEquals(actual, esperado);
+    }
+
+    @Test
+    @Tag("cuenta")
+    @Tag("banco")
+    void testTransferirDineroCuentas() {
+
+      Banco banco = new Banco();
+      banco.setNombre("ScotiaBank");
+      banco.transferir(cuenta1, cuenta, new BigDecimal("500.23434"));
+
+      assertEquals("1500.00000", cuenta1.getSaldo().toPlainString());
+      assertEquals("10505.46868", cuenta.getSaldo().toPlainString());
+    }
   }
-
   @Test
-  void testCreditoCuenta() {
-    cuenta.credito(new BigDecimal("100"));
-
-    assertNotNull(cuenta.getSaldo());
-    assertEquals(10105, cuenta.getSaldo().intValue());
-
-    assertEquals("10105.23434", cuenta.getSaldo().toPlainString());
-  }
-
-  @Test
-  void testDineroInsuficienteExceptionCuenta() {
-    Exception exception = assertThrows(DineroInsuficienteException.class, () -> {
-      cuenta.debito(new BigDecimal(15000));
-    });
-
-    String actual = exception.getMessage();
-    String esperado = "Dinero Insuficiente";
-
-    assertEquals(actual, esperado);
-  }
-
-  @Test
-  void testTransferirDineroCuentas() {
-
-    Banco banco = new Banco();
-    banco.setNombre("ScotiaBank");
-    banco.transferir(cuenta1, cuenta, new BigDecimal("500.23434"));
-
-    assertEquals("1500.00000", cuenta1.getSaldo().toPlainString());
-    assertEquals("10505.46868", cuenta.getSaldo().toPlainString());
-  }
-
-  @Test
+  @Tag("cuenta")
+  @Tag("banco")
     //@Disable
   void testRelacionBancoCuentas() {
     //fail
@@ -238,7 +254,7 @@ class CuentaTest {
     assertTrue(cuenta.getSaldo().compareTo(BigDecimal.ZERO) > 0);
   }
 
-
+  @Tag("param")
   @ParameterizedTest(name = "numero {index} ejecutando con valor {argumentsWithNames}")
   @ValueSource(doubles = {100, 200, 300, 500, 700})
   void testDebitoCuentaPara(double monto) {
@@ -247,7 +263,7 @@ class CuentaTest {
     assertNotNull(cuenta.getSaldo());
     assertTrue(cuenta.getSaldo().compareTo(BigDecimal.ZERO) > 0);
   }
-
+  @Tag("param")
   @ParameterizedTest(name = "numero {index} ejecutando con valor {argumentsWithNames}")
   @CsvSource({"1,100", "2,200", "3,300"})
   void testDebitoCuentaCSVSource(String index, String monto) {
@@ -257,7 +273,7 @@ class CuentaTest {
     assertNotNull(cuenta.getSaldo());
     assertTrue(cuenta.getSaldo().compareTo(BigDecimal.ZERO) > 0);
   }
-
+  @Tag("param")
   @ParameterizedTest(name = "numero {index} ejecutando con valor {argumentsWithNames}")
   @CsvFileSource(resources = "/data.csv")
   void testDebitoCuentaCsvFileSource(String monto) {
@@ -265,7 +281,7 @@ class CuentaTest {
     assertNotNull(cuenta.getSaldo());
     assertTrue(cuenta.getSaldo().compareTo(BigDecimal.ZERO) > 0);
   }
-
+  @Tag("param")
   @ParameterizedTest(name = "numero {index} ejecutando con valor {argumentsWithNames}")
   @MethodSource("montoList")
   void testDebitoCuentaMethodSource(String monto) {
@@ -276,5 +292,28 @@ class CuentaTest {
 
   static private List<String> montoList() {
     return Arrays.asList("100", "200", "800");
+  }
+
+  @Nested
+  @Tag("timeout")
+  class EjemploTimeoutTest{
+    @Test
+    @Timeout(1)
+    void pruebaTimeout() throws InterruptedException {
+      TimeUnit.MILLISECONDS.sleep(100);
+    }
+
+    @Test
+    @Timeout(value = 1000, unit = TimeUnit.MILLISECONDS)
+    void pruebaTimeout2() throws InterruptedException {
+      TimeUnit.MILLISECONDS.sleep(900);
+    }
+
+    @Test
+    void testTimeoutAssertions() {
+      assertTimeout(Duration.ofSeconds(5), ()->{
+        TimeUnit.MILLISECONDS.sleep(4000);
+      });
+    }
   }
 }
